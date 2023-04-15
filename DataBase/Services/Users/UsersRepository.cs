@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataBase.Services.Users
 {
-    internal class UsersRepository : IUserRepository
+    public class UsersRepository : IUserRepository
     {
         private readonly ApplicationDbContext dbContext;//Конфигурация БД, созданная ранее подключается через конструктор сервиса
 
@@ -15,9 +15,9 @@ namespace DataBase.Services.Users
             this.dbContext = dbContext;
         }
 
-        List<DbUser> IUserRepository.Get()
+        DbUser[] IUserRepository.Get()
         {
-            return dbContext.Users.ToList(); // Получение всех пользователей из БД
+            return dbContext.Users.ToArray(); // Получение всех пользователей из БД
         }
 
         public DbUser? Get(int id) {
@@ -42,8 +42,8 @@ namespace DataBase.Services.Users
             }
             //Обновление данных пользователя
             dbUser.Login = user.Login;
-            dbUser.Password = user.Password;
-            dbUser.Name = user.Name;
+           
+            dbUser.UserName = user.UserName;
 
             dbContext.SaveChanges();// Сохранение изменений
         }

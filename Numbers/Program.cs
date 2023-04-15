@@ -1,4 +1,5 @@
 using DataBase;
+using DataBase.Services.Users;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +12,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options
-    => options.UseNpgsql("Host=localhost; Port=5432; Database=tsput;Username=postgres;Password=admin"));
+    => options.UseNpgsql("Host=localhost; Port=5432; Database=postgres;Username=postgres;Password=7"));
+builder.Services.AddScoped<IUserRepository, UsersRepository>();
 
 var app = builder.Build();
 

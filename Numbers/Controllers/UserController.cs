@@ -1,36 +1,34 @@
+using DataBase;
+using DataBase.Services.Users;
 using Microsoft.AspNetCore.Mvc;
-using Numbers.Helper;
 
 
 namespace Numbers.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class Controller : ControllerBase
+    [Route("api/[controller]")]
+    public class UserController : ControllerBase
     {
         private readonly IUserRepository userRepository;
 
-        public Controller(IUserRepository userRepository)
+        public UserController(IUserRepository userRepository)
         {
             this.userRepository = userRepository;
         }
 
-       
-
-
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()//
+        public ActionResult<IEnumerable<DbUser>> Get()//
         {
-            string[] data = GetData();
+            DbUser[] data = userRepository.Get();
             return data;
         }
 
         // GET api/values/5
-        [HttpGet("{index}")]   //Get [FromRoute]
-        public ActionResult<string> Get([FromRoute] int id)
+        [HttpGet("{id}")]   //Get [FromRoute]
+        public ActionResult<DbUser> Get([FromRoute] int id)
         {
-            var user = Repository.GetData(id);
+            var user = userRepository.Get(id);
             if (user == null)
             {
                 return NotFound();
@@ -39,17 +37,17 @@ namespace Numbers.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] User user)//([FromBody] AddElementContract contract)
+        public ActionResult Post([FromBody] DbUser user)//([FromBody] AddElementContract contract)
         {
 
-            Repository.Add(user);
+            userRepository.Create(user);
             return Ok();
         }
 
         [HttpPut]
-        public ActionResult Update([FromBody] User user, int id)//([FromBody] AddElementContract contract)
+        public ActionResult Update([FromBody] DbUser user)//([FromBody] AddElementContract contract)
         {
-              Repository.Update(user, id);
+              userRepository.Update(user);
               return Ok();
           }
 
@@ -58,7 +56,7 @@ namespace Numbers.Controllers
         [HttpDelete("{index}")]   //Get [FromRoute]
           public ActionResult Delete([FromRoute] int id)
           {
-             Repository.Delete(id);
+              userRepository.Delete(id);
               return Ok();
           }
     }

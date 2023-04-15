@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace DataBase.Services.Users
 {
-   // internal class IUserRepository
-    //{
+ 
     public interface IUserRepository
     {
-        List<DbUser> Get();
+        DbUser[] Get();
 
         DbUser? Get(int id);
 
@@ -24,5 +23,4 @@ namespace DataBase.Services.Users
 
     }
 
-  //  }
 }
