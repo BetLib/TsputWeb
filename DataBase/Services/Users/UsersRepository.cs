@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataBase.Services.Users
+﻿namespace DataBase.Services.Users
 {
-    public class UsersRepository : IUserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly ApplicationDbContext dbContext;//Конфигурация БД, созданная ранее подключается через конструктор сервиса
 
-        public UsersRepository(ApplicationDbContext dbContext)
+        public UserRepository(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
