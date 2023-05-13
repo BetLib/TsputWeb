@@ -13,7 +13,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options
     => options.UseNpgsql("Host=localhost; Port=5432; Database=postgres;Username=postgres;Password=7"));
-builder.Services.AddScoped<IUserRepository, UsersRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 
