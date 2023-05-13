@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DataBase.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataBase
 {
@@ -28,6 +29,16 @@ namespace DataBase
                     b.Property(product => product.Price).HasColumnName("price"); //
                     b.Property(product => product.Isdeleted).HasColumnName("isdeleted"); //
                 });
+            modelBuilder.Entity<UserPurchase>
+            (b => {
+                b.ToTable("productss"); // DbUser хранится в таблице Users 
+                b.HasKey(u => u.Id); // Db имеет ключ Id 
+                b.Property(userpurchase => userpurchase.Id).HasColumnName("id"); // 
+                b.Property(userpurchase => userpurchase.UserId).HasColumnName("userid"); // 
+                b.Property(userpurchase => userpurchase.ProductId).HasColumnName("productid"); //
+                b.Property(userpurchase => userpurchase.Price).HasColumnName("price"); //
+              
+            });
         }
     }
 }
