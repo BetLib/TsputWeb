@@ -53,7 +53,7 @@ namespace Numbers.Controllers
 
 
         // GET api/values/5
-        [HttpDelete("{index}")]   //Get [FromRoute]
+        [HttpDelete("{id}")]   //Get [FromRoute]
           public ActionResult Delete([FromRoute] int id)
           {
               userRepository.Delete(id);

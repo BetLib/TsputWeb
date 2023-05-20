@@ -11,11 +11,11 @@
 
         DbUser[] IUserRepository.Get()
         {
-            return dbContext.Users.ToArray(); // Получение всех пользователей из БД
+            return dbContext.Users.Where(u => !u.Isdeleted).ToArray(); // Получение всех пользователей из БД
         }
 
         public DbUser? Get(int id) {
-            return dbContext.Users.Find(id);
+            return dbContext.Users.Where(u => !u.Isdeleted).FirstOrDefault(u => u.Id == id);
         }
 
         void IUserRepository.Create(DbUser user)
@@ -50,14 +50,13 @@
             if (dbUser == null) 
             { 
                 return;
-            } 
+            }
 
 
             // Удаление пользователя из БД
-            dbContext.Remove(dbUser); 
+            dbUser.Isdeleted=true; 
             // Сохранение изменений
             dbContext.SaveChanges();
         }
-
     }
 }

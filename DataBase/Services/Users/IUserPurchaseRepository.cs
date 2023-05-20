@@ -12,6 +12,5 @@ namespace DataBase.Services.Users
         public UserPurchase[] Get(int userId);
 
         void Create(UserPurchase userpurchase);
-
     }
 }

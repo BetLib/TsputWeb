@@ -41,9 +41,5 @@ namespace lab6.Controllers
             purchaseRepository.Create(userpurchase);
             return Ok();
         }
-
-
-
     }
-
 }
