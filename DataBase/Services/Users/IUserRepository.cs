@@ -14,7 +14,7 @@ namespace DataBase.Services.Users
 
         DbUser? Get(int id);
 
-        void Create(DbUser user);
+        DbUser? Create(DbUser user);
 
         void Update(DbUser user);
 

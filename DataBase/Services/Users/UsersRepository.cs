@@ -1,4 +1,6 @@
-﻿namespace DataBase.Services.Users
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace DataBase.Services.Users
 {
     public class UserRepository : IUserRepository
     {
@@ -18,10 +20,18 @@
             return dbContext.Users.Where(u => !u.Isdeleted).FirstOrDefault(u => u.Id == id);
         }
 
-        void IUserRepository.Create(DbUser user)
+        DbUser? IUserRepository.Create(DbUser user)
         {
-            dbContext.Users.Add(user);//Добавленеи пользователя в ДБ
-            dbContext.SaveChanges();// Сохранение изменений
+            try
+            {
+                dbContext.Users.Add(user);//Добавленеи пользователя в ДБ
+                dbContext.SaveChanges();// Сохранение изменений
+                return user;
+            }
+            catch (DbUpdateException ex)
+            {
+                return null;
+            }
         }
 
 

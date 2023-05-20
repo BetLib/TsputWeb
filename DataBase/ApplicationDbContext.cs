@@ -20,6 +20,7 @@ namespace DataBase
                     b.Property(user => user.Login).HasColumnName("login"); // Свойство Login хранится в колонке "login"
                     b.Property(user => user.UserName).HasColumnName("name"); // Свойство Name хранится в колонке "name"
                     b.Property(user => user.Isdeleted).HasColumnName("isdeleted"); // Свойство Name хранится в колонке "name"
+                    b.Property(user => user.Password).HasColumnName("password"); // Свойство Name хранится в колонке "name"
                 });
             modelBuilder.Entity<Product>
                 (b => {
