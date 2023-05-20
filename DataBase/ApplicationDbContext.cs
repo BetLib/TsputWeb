@@ -1,4 +1,4 @@
-﻿using DataBase.Models;
+﻿
 using Microsoft.EntityFrameworkCore;
 
 namespace DataBase
@@ -7,6 +7,7 @@ namespace DataBase
     {
         public DbSet<DbUser> Users { get; set; } // Список пользователей в БД
         public DbSet<Product> Products { get; set; } // Список пользователей в БД
+        public DbSet<UserPurchase> UserPurchases { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { } // Стандартный конструктор для конфигурации БД
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,7 +32,7 @@ namespace DataBase
                 });
             modelBuilder.Entity<UserPurchase>
             (b => {
-                b.ToTable("productss"); // DbUser хранится в таблице Users 
+                b.ToTable("userpurchase"); // DbUser хранится в таблице Users 
                 b.HasKey(u => u.Id); // Db имеет ключ Id 
                 b.Property(userpurchase => userpurchase.Id).HasColumnName("id"); // 
                 b.Property(userpurchase => userpurchase.UserId).HasColumnName("userid"); // 
